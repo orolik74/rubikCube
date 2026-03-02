@@ -31,19 +31,17 @@ expr plus2(const expr & v) {
 }
 
 expr R(const expr& v) {
-    expr c1 = v.extract(29, 27);
+    const expr c1 = v.extract(29, 27);
     expr p1 = v.extract(26, 25);
 
-    expr c5 = v.extract(14, 12);
+    const expr c5 = v.extract(14, 12);
     expr p5 = v.extract(11, 10);
 
-    expr c7 = v.extract(4, 2);
+    const expr c7 = v.extract(4, 2);
     expr p7 = v.extract(1, 0);
 
-    expr c3 = v.extract(19, 17);
+    const expr c3 = v.extract(19, 17);
     expr p3 = v.extract(16, 15);
-
-    // return concat(v.extract(34, 30), v.extract(29, 0));
 
     p1 = plus1(p1);
     p3 = plus2(p3);
@@ -60,25 +58,29 @@ expr R(const expr& v) {
 }
 
 expr U(const expr& v) {
-    expr c0 = v.extract(34, 30);
-    expr c1 = v.extract(29, 25);
-    expr c2 = v.extract(24, 20);
-    expr c3 = v.extract(19, 15);
-    return concat(c2, concat(c0, concat(c3, concat(c1, v.extract(14, 0)))));
+    const expr c0 = v.extract(34, 30);
+    const expr c1 = v.extract(29, 25);
+    const expr c2 = v.extract(24, 20);
+    const expr c3 = v.extract(19, 15);
+    return concat(c2, // 0
+        concat(c0, // 1
+        concat(c3, // 2
+        concat(c1, // 3
+        v.extract(14, 0))))); // 567
 }
 
 expr F(const expr& v) {
 
-    expr c2 = v.extract(24, 22);
+    const expr c2 = v.extract(24, 22);
     expr p2 = v.extract(21, 20);
 
-    expr c3 = v.extract(19, 17);
+    const expr c3 = v.extract(19, 17);
     expr p3 = v.extract(16, 15);
 
-    expr c7 = v.extract(4, 2);
+    const expr c7 = v.extract(4, 2);
     expr p7 = v.extract(1, 0);
 
-    expr c6 = v.extract(9, 7);
+    const expr c6 = v.extract(9, 7);
     expr p6 = v.extract(6, 5);
 
 
@@ -98,38 +100,34 @@ expr F(const expr& v) {
 
 
 expr R2(const expr& v) {
-    expr c1 = v.extract(29, 27);
-    expr p1 = v.extract(26, 25);
+    const expr c1 = v.extract(29, 25);
 
-    expr c5 = v.extract(14, 12);
-    expr p5 = v.extract(11, 10);
+    const expr c5 = v.extract(14, 10);
 
-    expr c7 = v.extract(4, 2);
-    expr p7 = v.extract(1, 0);
+    const expr c7 = v.extract(4, 0);
 
-    expr c3 = v.extract(19, 17);
-    expr p3 = v.extract(16, 15);
+    const expr c3 = v.extract(19, 15);
 
     return concat(v.extract(34, 30),//0
-        concat(c7,concat(p7,//1
+        concat(c7,//1
         concat(v.extract(24, 20),//2
-        concat(c5, concat(p5,//3
-        concat(c3, concat(p3,//5
+        concat(c5, //3
+        concat(c3, //5
         concat(v.extract(9, 5),//6
-        concat(c1, p1))))))))));//7
+        c1))))));//7
 }
 
 expr R1(const expr& v) {
-    expr c1 = v.extract(29, 27);
+    const expr c1 = v.extract(29, 27);
     expr p1 = v.extract(26, 25);
 
-    expr c5 = v.extract(14, 12);
+    const expr c5 = v.extract(14, 12);
     expr p5 = v.extract(11, 10);
 
-    expr c7 = v.extract(4, 2);
+    const expr c7 = v.extract(4, 2);
     expr p7 = v.extract(1, 0);
 
-    expr c3 = v.extract(19, 17);
+    const expr c3 = v.extract(19, 17);
     expr p3 = v.extract(16, 15);
 
     p1 = plus1(p1);
@@ -147,53 +145,57 @@ expr R1(const expr& v) {
 }
 
 expr U2(const expr& v) {
-    expr c0 = v.extract(34, 30);
-    expr c1 = v.extract(29, 25);
-    expr c2 = v.extract(24, 20);
-    expr c3 = v.extract(19, 15);
-    return concat(c3, concat(c2, concat(c1, concat(c0, v.extract(14, 0)))));
+    const expr c0 = v.extract(34, 30);
+    const expr c1 = v.extract(29, 25);
+    const expr c2 = v.extract(24, 20);
+    const expr c3 = v.extract(19, 15);
+    return concat(c3, // 0
+        concat(c2, // 1
+        concat(c1, // 2
+        concat(c0, // 3
+        v.extract(14, 0))))); // 567
 }
 
 expr U1(const expr& v) {
-    expr c0 = v.extract(34, 30);
-    expr c1 = v.extract(29, 25);
-    expr c2 = v.extract(24, 20);
-    expr c3 = v.extract(19, 15);
-    return concat(c1, concat(c3, concat(c0, concat(c2, v.extract(14, 0)))));
+    const expr c0 = v.extract(34, 30);
+    const expr c1 = v.extract(29, 25);
+    const expr c2 = v.extract(24, 20);
+    const expr c3 = v.extract(19, 15);
+    return concat(c1, // 0
+        concat(c3, // 1
+        concat(c0, // 2
+        concat(c2, // 3
+        v.extract(14, 0))))); // 567
 }
 
 expr F2(const expr& v) {
-    expr c2 = v.extract(24, 22);
-    expr p2 = v.extract(21, 20);
+    const expr c2 = v.extract(24, 20);
 
-    expr c3 = v.extract(19, 17);
-    expr p3 = v.extract(16, 15);
+    const expr c3 = v.extract(19, 15);
 
-    expr c7 = v.extract(4, 2);
-    expr p7 = v.extract(1, 0);
+    const expr c7 = v.extract(4, 0);
 
-    expr c6 = v.extract(9, 7);
-    expr p6 = v.extract(6, 5);
+    const expr c6 = v.extract(9, 5);
 
 
     return concat(v.extract(34, 25), //01
-        concat(c7, concat(p7, //2
-        concat(c6, concat(p6, // 3
+        concat(c7, //2
+        concat(c6,  // 3
         concat(v.extract(14, 10), // 5
-        concat(c3, concat(p3, // 6
-        concat(c2, p2))))))))); // 7
+        concat(c3,  // 6
+        (c2)))))); // 7
 }
 expr F1(const expr& v) {
-    expr c2 = v.extract(24, 22);
+    const expr c2 = v.extract(24, 22);
     expr p2 = v.extract(21, 20);
 
-    expr c3 = v.extract(19, 17);
+    const expr c3 = v.extract(19, 17);
     expr p3 = v.extract(16, 15);
 
-    expr c7 = v.extract(4, 2);
+    const expr c7 = v.extract(4, 2);
     expr p7 = v.extract(1, 0);
 
-    expr c6 = v.extract(9, 7);
+    const expr c6 = v.extract(9, 7);
     expr p6 = v.extract(6, 5);
 
 
@@ -212,15 +214,9 @@ expr F1(const expr& v) {
 
 
 expr next_state(const expr & v, const expr & turn) {
-     // 0 -- R
-     // 1 -- R1
-     // 2 -- R2
-     // 3 -- U
-     // 4 -- U1
-     // 5 -- U2
-     // 6 -- F
-     // 7 -- F1
-     // 8 -- F2
+     // 0 -- R 1 -- R1 2 -- R2
+     // 3 -- U 4 -- U1 5 -- U2
+     // 6 -- F 7 -- F1 8 -- F2
      return ite(turn == 0, R(v),
          ite(turn == 1, R1(v),
          ite(turn == 2, R2(v),
@@ -233,33 +229,25 @@ expr next_state(const expr & v, const expr & turn) {
 
 uint64_t val(const string &t) {
     uint64_t value = 0;
-    for (char c : t) {
+    for (const char c : t) {
         value = (value << 1) | (c - '0');
     }
     return value;
 }
 
+constexpr int maxCntTurns = 1;
 
 void solve() {
     uint64_t t;
-    int cur = 0;
     context ctx;
-    // params p(ctx);
-    // p.set("parallel.enable", true);
     int ans = 0;
     while (cin >> t) {
-        if (cur % 10000 == 0) {
-            cout << cur << ' ' << ans << '\n';
-        }
-        cur++;
-        // cout << cur++ << '\n';
-        expr cube = ctx.bv_val(t, 35);
+        const expr cube = ctx.bv_val(t, 35);
 
-        bool f = 0;
-        for (int cntTurns = 0; cntTurns <= 1; ++cntTurns) {
+        for (int cntTurns = 0; cntTurns <= maxCntTurns; ++cntTurns) {
             expr_vector turns(ctx);
             expr curCube = cube;
-            solver s = solver(ctx);
+            auto s = solver(ctx);
             for (int i = 0; i < cntTurns; ++i) {
                 turns.push_back(ctx.int_const(("t"+to_string(i)).c_str()));
                 s.add(turns[i] <= 8 && turns[i] >= 0);
@@ -272,28 +260,19 @@ void solve() {
             }
             s.add(curCube == ctx.bv_val(143020828, 35));
             if (s.check() == sat) {
-                f = 1;
                 ans++;
-                // cout << s.get_model().eval(curCube) << '\n';
                 break;
             }
         }
-        if (!f) {
-            // cout << "Ой-ой, не могу собрать(((\n\n";
-            // cout << t << '\n';
-            // ans++;
-            // return;
-        }
     }
-    // cout << "Все скрамблы можно собрать за <= 11 ходов" << '\n';
-    cout << ans << '\n';
+    cout << "Столько скрамблов можно собрать за <= " << maxCntTurns << " ходов: " << ans << '\n';
 }
 
 
 signed main() {
-    freopen("allCubes.txt", "r", stdin);
-    // cin.tie(nullptr)->sync_with_stdio(false);
-    // cout << setprecision(20) << fixed;
+    const auto unused = freopen("allCubes.txt", "r", stdin);
+    (void)unused;
+    cin.tie(nullptr)->sync_with_stdio(false);
     int t = 1;
     // cin >> t;
     while (t--) {

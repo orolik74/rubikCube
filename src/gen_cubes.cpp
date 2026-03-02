@@ -23,9 +23,7 @@ uint64_t val(const string &t) {
 }
 
 void printCube(const vector<pii>& cube) {
-    int ans = 0;
-    int sdv = 0;
-    string crr = "";
+    string crr;
     for (auto [x, y]: cube) {
         if (x == 4) continue;
         crr += char(((x&4)>>2) + '0');
@@ -71,7 +69,6 @@ void calc(int k) {
             }
 
             printCube(cube);
-            // ans++;
         }while (next_permutation(all(posl)));
 
         return;
@@ -86,13 +83,12 @@ void calc(int k) {
 
 void solve() {
     calc(0);
-    // cout << "00000001000100001100101001100011100\n";
-    // cout << "00000011100100011101001011100010110\n";
 }
 
 
 signed main() {
-    freopen("allCubes.txt", "w", stdout);
+    const auto unused = freopen("allCubes.txt", "w", stdout);
+    (void)unused;
     cin.tie(nullptr)->sync_with_stdio(false);
     cout << setprecision(20) << fixed;
     int t = 1;
