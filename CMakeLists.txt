@@ -3,8 +3,8 @@ project(untitled7)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(untitled7 main.cpp)
-add_executable(gen gen_cubes.cpp)
+add_executable(main src/main.cpp)
+add_executable(gen src/gen_cubes.cpp)
 add_definitions("-DLOCAL")
 
-target_link_libraries(untitled7 PRIVATE z3)
+target_link_libraries(main PRIVATE z3)
