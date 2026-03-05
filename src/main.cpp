@@ -236,36 +236,52 @@ uint64_t val(const string &t) {
 }
 
 constexpr int maxCntTurns = 1;
+constexpr int solvedCube = 143020828;
 
 void solve() {
+    ld start = clock();
+
     uint64_t t;
     context ctx;
     int ans = 0;
     while (cin >> t) {
+        if (t == solvedCube) {
+            continue;
+        }
         const expr cube = ctx.bv_val(t, 35);
 
-        for (int cntTurns = 0; cntTurns <= maxCntTurns; ++cntTurns) {
-            expr_vector turns(ctx);
+        expr_vector turns(ctx);
+        auto s = solver(ctx);
+        for (int cntTurns = 0; cntTurns < maxCntTurns; ++cntTurns) {
             expr curCube = cube;
-            auto s = solver(ctx);
-            for (int i = 0; i < cntTurns; ++i) {
-                turns.push_back(ctx.int_const(("t"+to_string(i)).c_str()));
-                s.add(turns[i] <= 8 && turns[i] >= 0);
+
+            turns.push_back(ctx.int_const(("t"+to_string(cntTurns)).c_str()));
+            s.add(turns[cntTurns] <= 8 && turns[cntTurns] >= 0);
+
+            if (cntTurns != 0) {
+                s.add(turns[cntTurns] / 3 != turns[cntTurns - 1] / 3);
             }
-            for (int i = 0; i < cntTurns - 1; ++i) {
-                s.add(turns[i] / 3 != turns[i + 1] / 3);
-            }
-            for (int i = 0; i < cntTurns; ++i) {
+
+            s.push();
+            for (int i = 0; i <= cntTurns; ++i) {
                 curCube = next_state(curCube, turns[i]);
             }
-            s.add(curCube == ctx.bv_val(143020828, 35));
+
+            s.add(curCube == ctx.bv_val(solvedCube, 35));
             if (s.check() == sat) {
                 ans++;
+                for (int i = 0; i <= cntTurns; ++i) {
+                    cout << s.get_model().eval(turns[i]) << ' ';
+                }
+                cout << '\n';
                 break;
             }
+            s.pop();
         }
     }
     cout << "Столько скрамблов можно собрать за <= " << maxCntTurns << " ходов: " << ans << '\n';
+
+    cout << "TIME: " << (ld)(clock() - start) / CLOCKS_PER_SEC << '\n';
 }
 
 
@@ -273,6 +289,7 @@ signed main() {
     const auto unused = freopen("allCubes.txt", "r", stdin);
     (void)unused;
     cin.tie(nullptr)->sync_with_stdio(false);
+    cout << setprecision(20) << fixed;
     int t = 1;
     // cin >> t;
     while (t--) {
