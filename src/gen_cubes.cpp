@@ -26,11 +26,11 @@ void printCube(const vector<pii>& cube) {
     string crr;
     for (auto [x, y]: cube) {
         if (x == 4) continue;
-        crr += char(((x&4)>>2) + '0');
-        crr += char(((x&2)>>1) + '0');
-        crr += char((x & 1) + '0');
-        crr += char(((y&2)>>1) + '0');
-        crr += char((y&1) + '0');
+        crr += static_cast<char>(((x & 4) >> 2) + '0');
+        crr += static_cast<char>(((x & 2) >> 1) + '0');
+        crr += static_cast<char>((x & 1) + '0');
+        crr += static_cast<char>(((y & 2) >> 1) + '0');
+        crr += static_cast<char>((y & 1) + '0');
     }
     cout << val(crr) << ' ';
 }

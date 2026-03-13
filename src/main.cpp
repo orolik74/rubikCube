@@ -8,15 +8,6 @@ using namespace z3;
 #pragma GCC optimize("03,unroll-loops")
 #pragma GCC target("avx,avx2,sse,sse2")
 
-#define itn int
-#define all(a) (a).begin(), (a).end()
-#define pii pair <int, int>
-#define ff first
-#define ss second
-#define ld long double
-#define sz(a) (a).size()
-#define retrun return
-
 expr plus1(const expr& v) {
     context &ctx = v.ctx();
     return ite(v == 0, ctx.bv_val(1, 2),
@@ -235,11 +226,11 @@ uint64_t val(const string &t) {
     return value;
 }
 
-constexpr int maxCntTurns = 1;
+constexpr int maxCntTurns = 1; // количество перебираемых ходов
 constexpr int solvedCube = 143020828;
 
 void solve() {
-    ld start = clock();
+    long double start = clock();
 
     uint64_t t;
     context ctx;
@@ -249,7 +240,6 @@ void solve() {
             continue;
         }
         const expr cube = ctx.bv_val(t, 35);
-
         expr_vector turns(ctx);
         auto s = solver(ctx);
         for (int cntTurns = 0; cntTurns < maxCntTurns; ++cntTurns) {
@@ -281,7 +271,7 @@ void solve() {
     }
     cout << "Столько скрамблов можно собрать за <= " << maxCntTurns << " ходов: " << ans << '\n';
 
-    cout << "TIME: " << (ld)(clock() - start) / CLOCKS_PER_SEC << '\n';
+    cout << "TIME: " << (long double)(clock() - start) / CLOCKS_PER_SEC << '\n';
 }
 
 
